@@ -133,6 +133,13 @@ class GS(QMainWindow, form_class):
         option.add_argument("disable-gpu")  # 가속 사용 x
         option.add_argument("lang=ko_KR")  # 가짜 플러그인 탑재
         option.add_argument('user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.3163.100 Safari/537.36')  # user-agent 이름 설정
+        option.add_argument("disable-infobars")
+        option.add_argument("--disable-extensions")
+        prefs = {
+            'profile.default_content_setting_values': {'cookies': 2, 'images': 2, 'plugins': 2, 'popups': 2, 'geolocation': 2, 'notifications': 2, 'auto_select_certificate': 2, 'fullscreen': 2, 'mouselock': 2, 'mixed_script': 2, 'media_stream': 2, 'media_stream_mic': 2, 'media_stream_camera': 2,
+                                                       'protocol_handlers': 2, 'ppapi_broker': 2, 'automatic_downloads': 2, 'midi_sysex': 2, 'push_messaging': 2, 'ssl_cert_decisions': 2, 'metro_switch_to_desktop': 2, 'protected_media_identifier': 2, 'app_banner': 2, 'site_engagement': 2,
+                                                       'durable_storage': 2}}
+        option.add_experimental_option('prefs', prefs)
 
         path = ca.install()
         self.driver = webdriver.Chrome(path, chrome_options=option)
